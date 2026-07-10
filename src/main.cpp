@@ -13,8 +13,10 @@ void handleSignal(int) {
 } // namespace
 
 int main() {
-    std::signal(SIGINT, handleSignal);
-    std::signal(SIGTERM, handleSignal);
+    if (std::signal(SIGINT, handleSignal) == SIG_ERR || std::signal(SIGTERM, handleSignal) == SIG_ERR) {
+        std::cerr << "failed to register signal handlers" << std::endl;
+        return 1;
+    }
 
     std::cout << "Starting webserve non-blocking poll loop" << std::endl;
 
