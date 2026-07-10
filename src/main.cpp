@@ -21,7 +21,7 @@ int main() {
     std::cout << "Starting webserve non-blocking poll loop" << std::endl;
 
     while (g_running) {
-        const int ready = ::poll(NULL, 0, 100);
+        const int ready = ::poll(nullptr, 0, 100);
         if (ready < 0) {
             if (errno == EINTR) {
                 continue;
