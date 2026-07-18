@@ -32,9 +32,12 @@ public:
 
     void resetForNextRequest();
 
+    bool needsWrite() const;
+
 private:
     int _fd;
     ClientState _state;
     std::string _inBuffer;
     std::string _outBuffer;
+    size_t _bytesSent;
 };
